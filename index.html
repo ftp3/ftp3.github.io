@@ -1,0 +1,135 @@
+<html>
+<head>
+<style>
+table {counter-reset: rowNumber;font-family: "FreeMono", monospace; }
+table tr {counter-increment: rowNumber;}
+table tr td:first-child::before {
+    content: counter(rowNumber);
+    min-width: 1em;
+    margin-right: 0.5em;}
+</style>
+
+<script>
+
+let imgData, canvas, context, img;
+function reset() {
+  context.drawImage(img, 0, 0);
+  imgData = context.getImageData(0, 0,canvas.width,canvas.height);  
+}
+
+window.onload = function() {
+  canvas = document.getElementById("myCanvas");
+  context = canvas.getContext("2d");
+  img = document.getElementById("source");
+  context.drawImage(img, 0, 0);
+  imgData = context.getImageData(0, 0,canvas.width,canvas.height);
+  window.requestAnimationFrame(fade);
+ 
+function fade(){
+  for (let i = 0; i < imgData.data.length; i += 4) {
+    r=imgData.data[i];
+    g=imgData.data[i+1];
+    b=imgData.data[i+2];
+    if(r>0)r--;
+    imgData.data[i]=r;
+    if(g>0)g--;
+    imgData.data[i+1]=g;
+    if(b>0)b--;
+    imgData.data[i+2]=b;
+    }
+  context.putImageData(imgData, 0, 0);
+  window.requestAnimationFrame(fade);
+  }
+}
+</script>
+
+
+<meta name="KeyWords" content="javascript java script programming coding tutorial how to code example sprite spritesheet animation">
+<meta name="Description" content="Image fade out - easy JavaScript tutorial">
+<meta HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<meta property="og:image" content="https://i.imgur.com/bgElz3B.png" />
+<title>Image fade out - easy JavaScript tutorial</title>
+</head>
+<body>
+<font face="Arial,Helvetica,Sans-Serif">
+<center>
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- responsive -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-6354658871288161"
+     data-ad-slot="1298666986"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<br><br>
+<h1>Basic sprite animation</h1>
+<img src="https://i.imgur.com/5moRUuk.gif"><br><br>
+</center>
+<div style="position:relative; width:80%; left:10%">
+Sprites are the heart and soul of most 2d games.<br><br>
+Almost every moving object: players, bullets, obstacles is typically a sprite.
+Spritesheet is an image consisting of multiple frames of animation.<br><br>
+Here is a short snippet that demonstrates how to use the drawImage function on the HTML5 Canvas to animate a sprite:<br><br>
+
+
+Here is an example of another spritesheet which is not as simple:<br><br>
+<img src=""><br><br>
+To keep our code snippet short, we'll use a simpler spritesheet:<br><br>
+<img src=""><br><br>
+We're using a very simple spritesheet - it contains only one action ("sequence") - running, all the frames are in one row.
+
+
+Good luck!
+<br><br>
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- responsive -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-6354658871288161"
+     data-ad-slot="1298666986"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<br><br>
+Check out these programming tutorials:<br><br>
+<b>JavaScript:</b><br><br>
+<a href="http://slicker.me/javascript/fire/fire.htm">Oldschool fire effect (20 lines)</a><br><br>
+<a href="http://slicker.me/fractals/animate.htm">Animated fractal (32 lines)</a><br><br>
+<a href="http://slicker.me/javascript/matter.htm">Physics engine for beginners</a><br><br>
+<a href="http://slicker.me/javascript/starfield.htm">Starfield (21 lines)</a><br><br>
+<a href="http://slicker.me/javascript/yinyang.htm">Yin Yang with a twist (4 circles and 20 lines)</a><br><br>
+<a href="http://slicker.me/javascript/illusion.htm">Optical illusion (18 lines)</a><br><br>
+<a href="http://sprite.slicker.me/tutorial/tutorial.htm">Tutorial - interactive, animated sprites</a><br><br>
+<a href="http://slicker.me/javascript/tutorial.htm">Your first program in JavaScript: you need 5 minutes and a notepad</a><br><br><br>
+<a href="http://slicker.me/fractals/excel.htm">Fractals in Excel</a><br><br>
+
+<b>Python in Blender 3d:</b><br><br>
+<a href="http://slicker.me/blender/domino.htm"><img src="https://i.imgur.com/aYhJRSX.gif">  Domino effect (10 lines)</a><br><br><br>
+<a href="http://slicker.me/blender/wreck.htm"><img src="https://i.imgur.com/9OUdwNR.gif">  Wrecking ball effect (14 lines)</a><br><br>
+<a href="http://slicker.me/blender/3d_mandelbrot.htm">3d fractal in Blender Python</a><br><br><br>
+<hr>
+</div>
+<br><br>
+<script type="text/javascript">
+var sc_project=9411562; 
+var sc_invisible=1; 
+var sc_security="cb2fda34"; 
+var scJsHost = (("https:" == document.location.protocol) ?
+"https://secure." : "http://www.");
+document.write("<sc"+"ript type='text/javascript' src='" +
+scJsHost+
+"statcounter.com/counter/counter.js'></"+"script>");
+</script>
+<noscript><div class="statcounter"><a title="web analytics"
+href="http://statcounter.com/" target="_blank"><img
+class="statcounter"
+src="http://c.statcounter.com/9411562/0/cb2fda34/1/"
+alt="web analytics"></a></div></noscript>
+
+
+
+
+</body></html>
