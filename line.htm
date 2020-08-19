@@ -1,0 +1,100 @@
+<html>
+<head>
+<style>
+a:link {color: gray;}
+a:visited {color: darkgray;}
+table {counter-reset: rowNumber;font-family: "FreeMono", monospace; }
+table tr {counter-increment: rowNumber;}
+table tr td:first-child::before {
+    content: counter(rowNumber);
+    min-width: 1em;
+    margin-right: 0.5em;}
+</style>
+<meta name="KeyWords" content="javascript how to code tutorial canvas drawing programming learn">
+<meta name="Description" content="JavaScript Canvas programming tutorial">
+<meta HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<meta property="og:image" content="https://i.imgur.com/n3s9a2X.png" />
+<title>JavaScript Canvas programming tutorial</title>
+</head>
+<body>
+<font face="Arial,Helvetica,Sans-Serif">
+
+<div style="position:relative; width:80%; left:10%;">
+<center>
+<h1>Line and path</h1>
+</center>
+<canvas id='myCanvas' width="400" height="300" style="background-color:gray"></canvas><br><br>
+<textarea cols='80' rows='10' id='code'>
+context.beginPath();
+context.moveTo(10,30);
+context.lineTo(350,50);
+context.rect(220,200,100,60);
+
+context.stroke();
+</textarea>
+<script>
+function klik(){
+canvas = document.getElementById('myCanvas');
+context = canvas.getContext('2d');    
+context.fillStyle = 'gray';
+context.fillRect(0, 0, 400, 300);
+context.fillStyle = 'black';
+let a = document.getElementById('code');
+instructions=a.value;
+let f=new Function (instructions);
+return(f());    
+}
+</script>
+<br><br>
+<button onclick='klik()'> Click here to (re)start the code</button>
+<br><br>
+Lines are obviously some of the most basic shapes in drawings. It's really easy to draw the on the Canvas:
+<pre>
+context.lineTo(x, y);
+</pre>
+where (x,y) are the coordinates of the end of the line.<br>
+Sounds simple, but what about the beginning of the line?<br>
+Here's how it works:<br>
+First, you 'begin a path':
+<pre>
+context.beginPath();
+</pre>
+This tells the system that you started drawing a new shape.<br>
+Next you place the virtual 'pen' somewhere on the Canvas:<br>
+<pre>
+context.moveTo(x1, y1);
+</pre>
+This will be the starting point for the line, which is added using:
+<pre>
+context.lineTo(x2, y2);
+</pre>
+This creates a line between (x1, y1) and (x2, y2). Now our pen is at (x2, y2) and you can either:<br>
+- pick it up and put it somewhere else (using moveTo) or<br>
+- draw another line (using lineTo) - from (x2, y2) to (x3, y4).<br>
+You repeat the step above until your shape is ready. At that point you draw the complete path:
+<pre>
+context.stroke();
+</pre>
+Please keep in mind that the path can include various shapes, including various curves and rectangles.<br><br>
+The executable example it the text box above has a very simple example that draws a path consisting of a line and a rectangle.<br>
+But what happens if we cut line [3] of the code (the one that draws the line to 350, 50) and move it line [5], which was originally empty?<br>
+Now our code looks like this:
+<pre>
+context.beginPath();
+context.moveTo(10,30);
+
+context.rect(220,200,100,60);
+context.lineTo(350,50);
+context.stroke();
+</pre>
+Now, instead of drawing the line from the point in the upper left part of the Canvas, the program is drawing it from the upper left corner of the rectangle.<br>
+That's because the rectangle is a part of our path. The code first [2] moves the pen to (10, 30), but next it moves it to (220, 200) to draw the rectangle.<br>
+When the rectangle is finished, the pen is again at (220, 200), so that's where the line drawn in [5] starts.<br>
+This example illustrates (pun intended) the importance of sequence in drawing a path.
+<br>
+<br>
+Next exercise: <a href='circle.htm'>Circle and arc</a><br>
+<a href='canvas.htm'>Back to main page</a><br>
+</div>
+</font>
+</body></html>

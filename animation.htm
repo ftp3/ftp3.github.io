@@ -1,0 +1,88 @@
+<html>
+<head>
+<style>
+a:link {color: gray;}
+a:visited {color: darkgray;}
+table {counter-reset: rowNumber;font-family: "FreeMono", monospace; }
+table tr {counter-increment: rowNumber;}
+table tr td:first-child::before {
+    content: counter(rowNumber);
+    min-width: 1em;
+    margin-right: 0.5em;}
+</style>
+<meta name="KeyWords" content="javascript how to code tutorial canvas drawing programming learn">
+<meta name="Description" content="JavaScript Canvas programming tutorial">
+<meta HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<meta property="og:image" content="https://i.imgur.com/n3s9a2X.png" />
+<title>JavaScript Canvas programming tutorial</title>
+</head>
+<body>
+<font face="Arial,Helvetica,Sans-Serif">
+
+<div style="position:relative; width:80%; left:10%;">
+<center>
+<h1>Animation</h1>
+</center>
+<canvas id='myCanvas' width="400" height="300" style="background-color:gray"></canvas><br><br>
+<textarea cols='80' rows='10' id='code'>
+let counter = 0;
+requestAnimationFrame(animate);
+function animate() {
+  context.clearRect(0, 0, canvas.width, canvas.height);
+
+  context.fillRect(20, counter, 40, 40);
+  requestAnimationFrame(animate);
+  counter++;
+}
+</textarea>
+<script>
+function klik(){
+canvas = document.getElementById('myCanvas');
+context = canvas.getContext('2d');    
+context.fillStyle = 'gray';
+context.fillRect(0, 0, 400, 300);
+context.fillStyle = 'black';
+let a = document.getElementById('code');
+instructions=a.value;
+let f=new Function (instructions);
+return(f());    
+}
+</script>
+<br><br>
+<button onclick='klik()'> Click here to (re)start the code</button>
+<br><br>
+If a picture is worth a thousand words, how much are sixty pictures per second worth?<br><br>
+You can easily bring your Canvas creations to life by animating them. Usually this is done by clearing the Canvas and then drawing the new frame, where the object has a different position, shape, size or color.<br>
+<pre>
+requestAnimationFrame(myFunction);
+</pre>
+This is a method which calls 'myFunction' before the screen is repainted (which typically happens around 60 times per second).<br>
+Of course you have to replace 'myFunction' with the actual name of your function you want to be executed periodically - in our executable code it's 'animate'.<br>
+To have a continuous animation, you need to execute it once from the main program (line [2] in our example above - to trigger the first iteration of the animation function) and then again at the end of the animation function [7]- to trigger each subsequent iteration.<br><br>
+The main program in our simple example above consist only of two lines:<br>
+- initiate the counter<br>
+- initiate the animation<br>
+The animation function is also extremely simple:<br>
+- clear the canvas<br>
+- draw the rectangle. Because the y coordinate depends on the counter, the rectangle is moving down in each frame, as the counter increases.<br>
+- increase the counter<br>
+By tying the size coordinate to the sine function, we can get a pulsating shape. Replace lines [5-6] with:
+<pre>
+  let size =  40 * Math.sin(counter / (5 * Math.PI));  
+  context.fillRect(200, 150, size, size);
+</pre>
+How about we fire our rectangle from a cannon?<br>
+The x coordinate will be proportional to the counter - our rectangular cannon ball will move to the right.<br>
+The y coordinate will travel on a parabolic curve: counter².<br>
+We'll also slow our counter ten times, to give you more time to admire our cannonade. Paste this starting in line [5]:
+<pre>
+  let y = (counter - 20) * (counter - 20);
+  context.fillRect(counter * 8, y, 40, 40);
+  requestAnimationFrame(animate);
+  counter = counter + .1;
+}
+</pre>
+<a href='canvas.htm'>Back to main page</a><br>
+</div>
+</font>
+</body></html>

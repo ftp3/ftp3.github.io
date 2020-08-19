@@ -1,0 +1,126 @@
+<html>
+<head>
+<style>
+a:link {color: gray;}
+a:visited {color: darkgray;}
+table {counter-reset: rowNumber;font-family: "FreeMono", monospace; }
+table tr {counter-increment: rowNumber;}
+table tr td:first-child::before {
+    content: counter(rowNumber);
+    min-width: 1em;
+    margin-right: 0.5em;}
+</style>
+<meta name="KeyWords" content="javascript how to code tutorial canvas drawing programming learn">
+<meta name="Description" content="JavaScript Canvas programming tutorial">
+<meta HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<meta property="og:image" content="https://i.imgur.com/n3s9a2X.png" />
+<title>JavaScript Canvas programming tutorial</title>
+</head>
+<body>
+<font face="Arial,Helvetica,Sans-Serif">
+
+<div style="position:relative; width:80%; left:10%;">
+<center>
+<h1>Yin Yang</h1>
+<img src=y5.png><br><br>
+</center>
+This short program creates the ancient symbol describing the balance of opposite forces.<br><br>
+We need five and half circles. :)  Here are the dimensions:<br><br>
+<img width = 80% src='https://upload.wikimedia.org/wikipedia/commons/a/a3/Yin_Yang_geometry.png'><br><br>
+<table cellspacing='0'; style="display: inline-block; border: 1px solid; ">
+<tr><td bgcolor='#f0f0f0'>&lt;<font color='brown'>html</font>&gt;</td></tr>
+<tr><td bgcolor='#e0e0e0'>&lt;<font color='brown'>canvas</font>&nbsp;<font color='brown'>id</font>='<font color='brown'>myCanvas</font>'&nbsp;<font color='brown'>width</font>='<font color='green'>400</font>'&nbsp;<font color='brown'>height</font>='<font color='green'>300</font>'&nbsp;<font color='brown'>style</font>='<font color='brown'>background</font>-<font color='brown'>color</font>:<font color='brown'>gray</font>'&gt;&lt;/<font color='brown'>canvas</font>&gt;</td></tr>
+<tr><td bgcolor='#f0f0f0'>&lt;<font color='brown'>script</font>&gt;</td></tr>
+<tr><td bgcolor='#e0e0e0'><font color='blue'>let</font>&nbsp;<font color='brown'>canvas</font>&nbsp;=&nbsp;<font color='blue'>document</font>.<font color='brown'>getElementById</font>('<font color='brown'>myCanvas</font>');</td></tr>
+<tr><td bgcolor='#f0f0f0'><font color='blue'>let</font>&nbsp;<font color='brown'>context</font>&nbsp;=&nbsp;<font color='brown'>canvas</font>.<font color='brown'>getContext</font>('2d');</td></tr>
+<tr><td bgcolor='#e0e0e0'><font color='blue'>let</font>&nbsp;x0&nbsp;=&nbsp;<font color='brown'>canvas</font>.<font color='brown'>width</font>&nbsp;/&nbsp;<font color='green'>2</font>;</td></tr>
+<tr><td bgcolor='#f0f0f0'><font color='blue'>let</font>&nbsp;y0&nbsp;=&nbsp;<font color='brown'>canvas</font>.<font color='brown'>height</font>&nbsp;/&nbsp;<font color='green'>2</font>;</td></tr>
+<tr><td bgcolor='#e0e0e0'>&nbsp;</td></tr>
+<tr><td bgcolor='#f0f0f0'><font color='blue'>function</font>&nbsp;<font color='brown'>circle</font>(<font color='brown'>y</font>,&nbsp;<font color='brown'>radius</font>,&nbsp;<font color='brown'>color</font>)&nbsp;{</td></tr>
+<tr><td bgcolor='#e0e0e0'>&nbsp;&nbsp;<font color='brown'>context</font>.<font color='brown'>beginPath</font>();</td></tr>
+<tr><td bgcolor='#f0f0f0'>&nbsp;&nbsp;<font color='brown'>context</font>.<font color='brown'>fillStyle</font>&nbsp;=&nbsp;<font color='brown'>color</font>;</td></tr>
+<tr><td bgcolor='#e0e0e0'>&nbsp;&nbsp;<font color='brown'>context</font>.<font color='brown'>arc</font>(x0,&nbsp;<font color='brown'>y</font>&nbsp;+&nbsp;y0,&nbsp;<font color='brown'>radius</font>,&nbsp;<font color='green'>0</font>,&nbsp;<font color='blue'>Math</font>.<font color='brown'>PI</font>&nbsp;*&nbsp;<font color='green'>2</font>);</td></tr>
+<tr><td bgcolor='#f0f0f0'>&nbsp;&nbsp;<font color='brown'>context</font>.<font color='brown'>fill</font>();</td></tr>
+<tr><td bgcolor='#e0e0e0'>}</td></tr>
+<tr><td bgcolor='#f0f0f0'><font color='blue'>let</font>&nbsp;<font color='brown'>radius</font>&nbsp;=&nbsp;<font color='green'>120</font>;</td></tr>
+<tr><td bgcolor='#e0e0e0'><font color='brown'>circle</font>(<font color='green'>0</font>,&nbsp;<font color='brown'>radius</font>,&nbsp;'<font color='brown'>white</font>')</td></tr>
+<tr><td bgcolor='#f0f0f0'><font color='brown'>context</font>.<font color='brown'>fillStyle</font>&nbsp;=&nbsp;'<font color='brown'>black</font>';</td></tr>
+<tr><td bgcolor='#e0e0e0'><font color='brown'>context</font>.<font color='brown'>beginPath</font>();</td></tr>
+<tr><td bgcolor='#f0f0f0'><font color='brown'>context</font>.<font color='brown'>arc</font>(x0,&nbsp;y0,&nbsp;<font color='brown'>radius</font>,&nbsp;-<font color='blue'>Math</font>.<font color='brown'>PI</font>&nbsp;*&nbsp;.<font color='green'>5</font>,&nbsp;<font color='blue'>Math</font>.<font color='brown'>PI</font>&nbsp;*&nbsp;.<font color='green'>5</font>);</td></tr>
+<tr><td bgcolor='#e0e0e0'><font color='brown'>context</font>.<font color='brown'>fill</font>();</td></tr>
+<tr><td bgcolor='#f0f0f0'><font color='brown'>circle</font>(<font color='brown'>radius</font>&nbsp;/&nbsp;<font color='green'>2</font>,&nbsp;<font color='brown'>radius</font>&nbsp;/&nbsp;<font color='green'>2</font>,&nbsp;'<font color='brown'>white</font>');</td></tr>
+<tr><td bgcolor='#e0e0e0'><font color='brown'>circle</font>(-<font color='brown'>radius</font>&nbsp;/&nbsp;<font color='green'>2</font>,&nbsp;<font color='brown'>radius</font>&nbsp;/&nbsp;<font color='green'>2</font>,&nbsp;'<font color='brown'>black</font>');</td></tr>
+<tr><td bgcolor='#f0f0f0'><font color='brown'>circle</font>(<font color='brown'>radius</font>&nbsp;/&nbsp;<font color='green'>2</font>,&nbsp;<font color='brown'>radius</font>&nbsp;/&nbsp;<font color='green'>8</font>,&nbsp;'<font color='brown'>black</font>');</td></tr>
+<tr><td bgcolor='#e0e0e0'><font color='brown'>circle</font>(-<font color='brown'>radius</font>&nbsp;/&nbsp;<font color='green'>2</font>,&nbsp;<font color='brown'>radius</font>&nbsp;/&nbsp;<font color='green'>8</font>,&nbsp;'<font color='brown'>white</font>');</td></tr>
+<tr><td bgcolor='#f0f0f0'>&lt;/<font color='brown'>script</font>&gt;</td></tr>
+<tr><td bgcolor='#e0e0e0'>&lt;/<font color='brown'>html</font>&gt;</td></tr>
+</table>
+<br><br>
+Let's analyze the code line by line:<br><br>
+[6-7] - calculate the coordinates of the center point of the Canvas<br>
+[9-14] - a function that draws a circle.<br>
+Because we will be drawing multiple circles and certain parts of code (beginning and ending the path, setting the color etc.) are the same for each circle, we can create a function that can be called by the main program.<br>
+The main program will pass the following parameters of the circle to the function:<br>
+- the y coordinate (we don't need the x coordinate because it is always in the center of the Canvas)<br>
+- radius of the circle<br>
+- fill color<br>
+<br>
+[15-24] The main program:<br>
+[16] the main white circle<br><br>
+<img src=y0.png><br><br>
+[17-20] black half-circle<br><br>
+<img src=y1.png><br><br>
+[21] medium white circle<br><br>
+<img src=y2.png><br><br>
+[22] medium black circle<br><br>
+<img src=y3.png><br><br>
+[23] small black circle<br><br>
+<img src=y4.png><br><br>
+[24] small white circle<br><br>
+<img src=y5.png><br><br>
+And finally, a live Canvas and code you can execute and experiment with:<br><br>
+<canvas id='myCanvas' width="400" height="300" style="background-color:gray"></canvas><br><br>
+<textarea cols='80' rows='20' id='code'>
+let x0 = canvas.width / 2;
+let y0 = canvas.height / 2;
+
+function circle(y, radius, color) {
+  context.beginPath();
+  context.fillStyle = color;
+  context.arc(x0, y + y0, radius, 0, Math.PI * 2);
+  context.fill();
+}
+let radius = 120;
+circle(0, radius, 'white')
+context.fillStyle = 'black';
+context.beginPath();
+context.arc(x0, y0, radius, -Math.PI * .5, Math.PI * .5);
+context.fill();
+circle(radius / 2, radius / 2, 'white');
+circle(-radius / 2, radius / 2, 'black');
+circle(radius / 2, radius / 8, 'black');
+circle(-radius / 2, radius / 8, 'white');
+</textarea>
+<script>
+function klik(){
+canvas = document.getElementById('myCanvas');
+context = canvas.getContext('2d');    
+context.fillStyle = 'gray';
+context.fillRect(0, 0, 400, 300);
+context.fillStyle = 'black';
+let a = document.getElementById('code');
+instructions=a.value;
+let f=new Function (instructions);
+return(f());    
+}
+</script>
+<br><br>
+<button onclick='klik()'> Click here to (re)start the code</button>
+
+</div>
+Next exercise: <a href='animation.htm'>Animation</a><br>
+<a href='canvas.htm'>Back to main page</a><br>
+
+
+</font>
+</body></html>

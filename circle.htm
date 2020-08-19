@@ -1,0 +1,87 @@
+<html>
+<head>
+<style>
+a:link {color: gray;}
+a:visited {color: darkgray;}
+table {counter-reset: rowNumber;font-family: "FreeMono", monospace; }
+table tr {counter-increment: rowNumber;}
+table tr td:first-child::before {
+    content: counter(rowNumber);
+    min-width: 1em;
+    margin-right: 0.5em;}
+</style>
+<meta name="KeyWords" content="javascript how to code tutorial canvas drawing programming learn">
+<meta name="Description" content="JavaScript Canvas programming tutorial">
+<meta HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<meta property="og:image" content="https://i.imgur.com/n3s9a2X.png" />
+<title>JavaScript Canvas programming tutorial</title>
+</head>
+<body>
+<font face="Arial,Helvetica,Sans-Serif">
+
+<div style="position:relative; width:80%; left:10%;">
+<center>
+<h1>Circle and arc</h1>
+</center>
+<canvas id='myCanvas' width="400" height="300" style="background-color:gray"></canvas><br><br>
+<textarea cols='80' rows='10' id='code'>
+for (let i = 0; i < 40; i++) {
+  context.beginPath();
+  context.arc(200, 150, i * 3, 0, i / 7);
+  context.stroke();
+}
+</textarea>
+<script>
+function klik(){
+canvas = document.getElementById('myCanvas');
+context = canvas.getContext('2d');    
+context.fillStyle = 'gray';
+context.fillRect(0, 0, 400, 300);
+context.fillStyle = 'black';
+let a = document.getElementById('code');
+instructions=a.value;
+let f=new Function (instructions);
+return(f());    
+}
+</script>
+<br><br>
+<button onclick='klik()'> Click here to (re)start the code</button>
+<br><br>
+The Canvas Context has an 'arc' method that can be used to draw circles and arcs.<br>
+Its basic parameters are:
+<pre>
+context.arc(x, y, radius, startAngle, endAngle);
+</pre>
+x, y - coordinates of the arc's center<br><br>
+startAngle and endAngle are the beginning and ending (respecitvely) angles of the arc measured clockwise from the positive x-axis and expressed in radians.<br>
+If your math skills only include degrees but not radians, use the following conversion formula:<br>
+<pre>
+radians = 180/π*degrees
+</pre>
+The mathematical constant π in JavaScript is 'Math.PI'.<br>
+A full circle (360 degrees) corresponds to 2π radians, so to draw a circle in the middle of the Canvas, you need: 
+<pre>
+context.beginPath();
+context.arc(200, 150, 100, 0, 2 * Math.PI);
+context.stroke();
+</pre>
+The executable example in the textbox is only slightly more complicated: it has a loop which draws 40 arcs. They all have the same center, but the radius increases by 3 with each iteration.<br>
+The length of the arc also increases, so the ones in the middle are very short and the ones on the outside are longer, resulting in a shell-like shape.<br>
+Check out what happens when the startAngle changes at a different rate than the endAngle? replace [5] with:<br>
+<pre>
+  context.arc(200, 150, i * 3, i/3, i / 4);
+</pre>  
+How about we move the center at the same time?
+<pre>
+  context.arc(20 + i * 4, 20 + i * 3, i * 3, i/3, i / 4);
+</pre>
+Almost like a 3d tunnel!<br>
+<br>
+Enjoy experimenting with various parameters!
+<br>
+<br>
+Next exercise: <a href='yinyang.htm'>Yin Yang</a><br>
+<a href='canvas.htm'>Back to main page</a><br>
+</div>
+</font>
+</body></html>

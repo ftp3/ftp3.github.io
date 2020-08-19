@@ -1,0 +1,88 @@
+<html>
+<head>
+<style>
+a:link {color: gray;}
+a:visited {color: darkgray;}
+table {counter-reset: rowNumber;font-family: "FreeMono", monospace; }
+table tr {counter-increment: rowNumber;}
+table tr td:first-child::before {
+    content: counter(rowNumber);
+    min-width: 1em;
+    margin-right: 0.5em;}
+</style>
+<meta name="KeyWords" content="javascript how to code tutorial canvas drawing programming learn">
+<meta name="Description" content="JavaScript Canvas programming tutorial">
+<meta HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<meta property="og:image" content="https://i.imgur.com/n3s9a2X.png" />
+<title>JavaScript Canvas programming tutorial</title>
+</head>
+<body>
+<font face="Arial,Helvetica,Sans-Serif">
+
+<div style="position:relative; width:80%; left:10%;">
+<center>
+<h1>The 'for' loop</h1>
+</center>
+
+The 'for' loop is one of the basic concepts in all programming languages - it allows you to execute a piece of code multiple times. You use every time you want to do something a set amount of times.<br><br>
+
+<canvas id='myCanvas' width="400" height="300" style="background-color:gray"></canvas><br><br>
+<textarea cols="80" rows="10" id='code'>
+for (let i = 0; i < 50; i++) {
+  context.fillRect (10, i*5, 4, 4 );
+}
+</textarea>
+<script>
+function klik(){
+canvas = document.getElementById('myCanvas');
+context = canvas.getContext('2d');    
+context.fillStyle = 'gray';
+context.fillRect(0, 0, 400, 300);
+context.fillStyle = 'black';
+let a = document.getElementById('code');
+let instructions = a.value;
+let f = new Function (instructions);
+return(f());    
+}
+</script>
+<br><br>
+<button onclick='klik()'> Click here to (re)start the code</button>
+<br><br>
+It consists of four parts:
+<pre>
+for ([initialization]; [condition]; [final expression])
+   statement
+</pre>   
+The initialization is what happens at the beginning of the loop - we assign the value of 0 to the variable i.<br><br>
+The condition is what is checked before each loop iteration - we're checking if the value of i is lower than 50.<br><br>
+The final expression is what happens at the end of each iteration - we increase the value of i by 1.<br><br>
+The statement is the 'body' of the loop - the piece of program that is executed as long as the condition is met. Here, we are only drawing a small rectangle. In most programs, the 'statement' contains multiple instruction (a block of code).<br>
+So our loop will be executed fifty times. In the first iteration, the value of i will be 0, then 1, then 2 and so on until 49. One the value of i reaches 50, the 'condition' will not be met (50 is not lower than 50) and the loop will end.<br>
+In plain English, our loop tells the computer:<br>
+Start with i equal to zero.<br>
+If i is lower then 50, draw a rectangle and increase i by one.<br>
+
+Because the y coordinate of the depends on the value of i, each subsequent rectangle is lower than the previous one. In the first iteration, the value of i 0, so the y coordinate is 0. In the second one, i is 1, so y is 5. In the third, i is 2, y is 10. And so on.<br><br>
+Try changing the 'statement' line to:
+<br>
+<pre>
+  context.fillRect (i*5, i*5, i, i );
+</pre>
+This time, both coordinates depend on the value of i, so the rectangles 'travel' to the bottom-right side of the Canvas.<br>
+The width and height are equal to i, so the rectangles get bigger with each iteration.<br>
+Now try a loop which draws two rectangles in each statement:
+<pre>
+for (let i = 0; i < 50; i++) {
+  context.fillRect (10, i*5, 4, 4 );
+  context.fillRect (i*5, i*5, i, i );
+}
+</pre>
+<br>
+<br>
+Next exercise: <a href='line.htm'>Line and path</a><br>
+<a href='canvas.htm'>Back to main page</a><br>
+
+
+</div>
+</font>
+</body></html>
