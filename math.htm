@@ -1,0 +1,66 @@
+<html>
+<head>
+<script data-ad-client="ca-pub-5625913335257722" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<style>
+a:link {color: gray;}
+a:visited {color: darkgray;}
+table {counter-reset: rowNumber;font-family: "FreeMono", monospace; }
+table tr {counter-increment: rowNumber;}
+table tr td:first-child::before {
+    content: counter(rowNumber);
+    min-width: 1em;
+    margin-right: 0.5em;}
+</style>
+<meta name="KeyWords" content="javascript how to code tutorial canvas drawing programming learn">
+<meta name="Description" content="JavaScript Canvas programming tutorial">
+<meta HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<meta property="og:image" content="https://i.imgur.com/n3s9a2X.png" />
+<title>JavaScript Canvas programming tutorial</title>
+</head>
+<body>
+<font face="Arial,Helvetica,Sans-Serif">
+
+<div style="position:relative; width:80%; left:10%;">
+<center>
+<h1>Graphing math functions</h1>
+</center>
+<canvas id='myCanvas' width="400" height="300" style="background-color:gray"></canvas><br><br>
+<textarea cols='80' rows='10' id='code'>
+context.translate(canvas.width / 2, canvas.height / 2);
+context.scale(Math.PI * 5, 80);
+for (let i = -Math.PI * 4; i < Math.PI * 4; i = i + .1)
+  context.fillRect(i, Math.sin(i), 0.1, 0.1);
+</textarea>
+<script>
+function klik(){
+canvas = document.getElementById('myCanvas');
+context = canvas.getContext('2d');    
+context.fillStyle = 'gray';
+context.fillRect(0, 0, 400, 300);
+context.fillStyle = 'black';
+let a = document.getElementById('code');
+instructions=a.value;
+let f=new Function (instructions);
+return(f());    
+}
+</script>
+<br><br>
+<button onclick='klik()'> Click here to (re)start the code</button>
+<br><br>
+To plot math functions, for example y=sin(x), we can move the (0,0) point to the center of the Canvas:
+<pre>
+context.translate(canvas.width / 2, canvas.height / 2);
+</pre>
+The two arguments, as you can probably guess, are the x-shift and y-shift. We shifted the origin by half of the canvas width to the right and half of the canvas height down, so it ended up in the center, just like mathematicians are used to.<br>
+Next, we can scale (zoom in/out):
+<pre>
+context.scale(Math.PI * 5, 80);
+</pre>
+Again, we provided the x (5 times Pi) and y (80) scale factors. A factor greated than 1 zooms in, lower than 1 zooms out.<br>
+All that remains is a loop that calculates the Y coordinate based on the X and plots the dots.<br>
+<br>
+<br>
+<a href='index.htm'>Back to main page</a><br>
+</div>
+</font>
+</body></html>
